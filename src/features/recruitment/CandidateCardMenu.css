@@ -17,10 +17,9 @@
 }
 
 .candidate-card-menu__dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  z-index: 10;
+  /* position/top/left are set inline (see CandidateCardMenu.tsx) - it's
+     portaled to document.body, so it has no positioned ancestor here. */
+  z-index: 1100;
   min-width: 160px;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
