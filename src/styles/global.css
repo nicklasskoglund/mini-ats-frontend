@@ -1,0 +1,48 @@
+/* Base reset and global element styling, built on the tokens in tokens.css. */
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body);
+}
+
+h1 {
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-page-title);
+  margin: 0;
+}
+
+h2 {
+  font-size: var(--font-size-section-title);
+  font-weight: var(--font-weight-section-title);
+  margin: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
