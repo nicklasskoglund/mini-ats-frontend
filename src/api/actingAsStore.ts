@@ -21,8 +21,17 @@ export function setStoredCustomerId(customerId: string | null): void {
   }
 }
 
-/** Called by the API client when the stored customer id no longer exists. */
+/**
+ * Called by the API client when the stored customer id no longer exists.
+ * Idempotent: two requests can race with the same stale id (e.g. the jobs
+ * list and the kanban board both carrying X-Acting-As-Customer), and only
+ * the first to arrive should clear the selection and notify - otherwise
+ * the second fires a duplicate "customer no longer exists" toast.
+ */
 export function clearStoredCustomerIdAsInvalid(): void {
+  if (getStoredCustomerId() === null) {
+    return
+  }
   setStoredCustomerId(null)
   actingAsEvents.dispatchEvent(new Event(ACTING_AS_CUSTOMER_CLEARED))
 }
