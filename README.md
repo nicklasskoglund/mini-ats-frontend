@@ -30,12 +30,13 @@ npm run dev
 
 ## Status
 
-Project scaffold: folder structure, design tokens, and test tooling are in
-place. No application features yet.
+Authentication against Supabase, role-based route guarding, and the
+application shell (sidebar, topbar, act-as-customer picker) are in place.
+Every other view is a "coming soon" placeholder.
 
 ## Roadmap
 
-- [ ] Authentication and application shell
+- [x] Authentication and application shell
 - [ ] Recruitment kanban board
 - [ ] Jobs
 - [ ] Candidates and candidate profile
