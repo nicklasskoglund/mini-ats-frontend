@@ -1,7 +1,7 @@
 // One kanban column: header with count, drop target for drag & drop
 // (dashed highlight while dragging over it, per DESIGN.md section 7), and
 // either skeleton placeholders, an empty-state message, or the cards.
-import { useState, type DragEvent } from 'react'
+import { useRef, useState, type DragEvent } from 'react'
 import type { CandidateRead, Stage } from '../../api/types'
 import { CandidateCard } from './CandidateCard'
 import { STAGE_LABELS } from './stageLabels'
@@ -25,14 +25,35 @@ export function KanbanColumn({
   onMove,
 }: KanbanColumnProps) {
   const [dragOver, setDragOver] = useState(false)
+  // dragenter/dragleave fire for every child the pointer crosses, not just
+  // the column itself - moving over a card inside the column fires enter
+  // (child) then leave (column background), so a plain boolean flickers
+  // off and on. A counter only reaches zero once the pointer has actually
+  // left every nested element, matching the guaranteed enter-before-leave
+  // ordering for that transition.
+  const dragDepthRef = useRef(0)
 
   function handleDragOver(event: DragEvent<HTMLDivElement>) {
     event.preventDefault()
     event.dataTransfer.dropEffect = 'move'
   }
 
+  function handleDragEnter(event: DragEvent<HTMLDivElement>) {
+    event.preventDefault()
+    dragDepthRef.current += 1
+    setDragOver(true)
+  }
+
+  function handleDragLeave() {
+    dragDepthRef.current = Math.max(0, dragDepthRef.current - 1)
+    if (dragDepthRef.current === 0) {
+      setDragOver(false)
+    }
+  }
+
   function handleDrop(event: DragEvent<HTMLDivElement>) {
     event.preventDefault()
+    dragDepthRef.current = 0
     setDragOver(false)
     const data = event.dataTransfer.getData('application/json')
     if (!data) {
@@ -46,8 +67,8 @@ export function KanbanColumn({
     <div
       className={dragOver ? 'kanban-column kanban-column--drag-over' : 'kanban-column'}
       onDragOver={handleDragOver}
-      onDragEnter={() => setDragOver(true)}
-      onDragLeave={() => setDragOver(false)}
+      onDragEnter={handleDragEnter}
+      onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
       <div className="kanban-column__header">
