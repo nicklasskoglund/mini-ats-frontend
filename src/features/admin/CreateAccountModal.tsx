@@ -4,10 +4,10 @@
 // see adminMutations.ts), while Företagsnamn and "Fler företagsuppgifter"
 // only apply to Kund (an admin account has no company profile).
 import { useState, type FormEvent } from 'react'
-import { getGenericErrorMessage } from '../../api/errors'
 import type { AccountRole, AdminAccountCreate, ProfileUpdate } from '../../api/types'
 import { Modal } from '../../components/Modal'
 import { useToast } from '../../context/ToastProvider'
+import { getAccountCreationErrorMessage } from './accountCreationErrorMessage'
 import { createAccount, updateCustomerProfile } from './adminMutations'
 import './CreateAccountModal.css'
 
@@ -107,7 +107,7 @@ export function CreateAccountModal({ onCreated, onClose }: CreateAccountModalPro
 
       onCreated()
     } catch (submitError) {
-      setError(getGenericErrorMessage(submitError))
+      setError(getAccountCreationErrorMessage(submitError))
     } finally {
       setSubmitting(false)
     }

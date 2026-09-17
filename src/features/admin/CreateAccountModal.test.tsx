@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { ApiError } from '../../api/errors'
 import { CreateAccountModal } from './CreateAccountModal'
 
 const createAccountMock = vi.fn()
@@ -121,6 +122,23 @@ describe('CreateAccountModal', () => {
 
     await screen.findByRole('alert')
     expect(screen.getByRole('alert')).toHaveTextContent('Något gick fel. Försök igen.')
+    expect(onCreated).not.toHaveBeenCalled()
+  })
+
+  it('shows the specific, translated message for a duplicate-email 409 instead of the generic copy', async () => {
+    createAccountMock.mockRejectedValue(
+      new ApiError(409, 'An account with this email already exists'),
+    )
+    const onCreated = vi.fn()
+    render(<CreateAccountModal onCreated={onCreated} onClose={vi.fn()} />)
+
+    fillRequiredCustomerFields()
+    fireEvent.click(screen.getByRole('button', { name: 'Skapa konto' }))
+
+    await screen.findByRole('alert')
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      'Ett konto med den här e-postadressen finns redan.',
+    )
     expect(onCreated).not.toHaveBeenCalled()
   })
 
