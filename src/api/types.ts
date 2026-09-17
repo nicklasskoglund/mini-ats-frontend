@@ -49,7 +49,7 @@ export interface CandidateUpdate {
  */
 export type KanbanBoard = Record<Stage, CandidateRead[]>
 
-/** Job as returned by GET /jobs. Only id/title are used before Step 4. */
+/** Job as returned by GET /jobs. */
 export interface JobRead {
   id: string
   customer_id: string
@@ -57,4 +57,23 @@ export interface JobRead {
   description: string | null
   status: string
   created_at: string
+}
+
+/**
+ * Request body for POST /jobs. `status` has no backend enum (plain string,
+ * default "open" if omitted) - the app always sends "active" explicitly so
+ * "open" never appears alongside the three chosen values (see
+ * features/jobs/jobStatus.ts).
+ */
+export interface JobCreate {
+  title: string
+  description?: string | null
+  status?: string
+}
+
+/** Request body for PATCH /jobs/{job_id}. All fields optional (partial update). */
+export interface JobUpdate {
+  title?: string
+  description?: string | null
+  status?: string
 }
