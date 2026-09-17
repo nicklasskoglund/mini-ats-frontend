@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import type { CandidateRead } from '../../api/types'
 import { OverviewTab } from './OverviewTab'
 
@@ -25,7 +25,7 @@ function buildCandidate(overrides: Partial<CandidateRead> = {}): CandidateRead {
 
 describe('OverviewTab', () => {
   it('shows all five contact rows with an en dash for missing values', () => {
-    render(<OverviewTab candidate={buildCandidate()} jobTitle={undefined} />)
+    render(<OverviewTab candidate={buildCandidate()} jobTitle={undefined} onAssess={vi.fn()} />)
 
     expect(screen.getByText('anna@example.com')).toBeInTheDocument()
     expect(screen.getByText('2026-03-05')).toBeInTheDocument()
@@ -38,6 +38,7 @@ describe('OverviewTab', () => {
       <OverviewTab
         candidate={buildCandidate({ linkedin_url: 'https://linkedin.com/in/anna' })}
         jobTitle="Frontend developer"
+        onAssess={vi.fn()}
       />,
     )
 
@@ -48,10 +49,13 @@ describe('OverviewTab', () => {
     expect(screen.getByText('Frontend developer')).toBeInTheDocument()
   })
 
-  it('shows the AI assessment placeholder, not a five-state panel', () => {
-    render(<OverviewTab candidate={buildCandidate()} jobTitle={undefined} />)
+  it('renders the AI assessment panel in the right column', () => {
+    // Full state coverage lives in AiAssessmentPanel.test.tsx - this just
+    // confirms OverviewTab wires the candidate/onAssess through to it.
+    render(
+      <OverviewTab candidate={buildCandidate({ cv_text: null })} jobTitle={undefined} onAssess={vi.fn()} />,
+    )
 
-    expect(screen.getByText('AI-bedömning kommer i nästa steg.')).toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: 'Kör AI-bedömning' })).not.toBeInTheDocument()
+    expect(screen.getByText('Lägg till CV-text först')).toBeInTheDocument()
   })
 })
