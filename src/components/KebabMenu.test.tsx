@@ -53,6 +53,20 @@ describe('KebabMenu', () => {
     expect(screen.queryByRole('menu')).not.toBeInTheDocument()
   })
 
+  it('renders a custom trigger label and aria-label when given', () => {
+    render(
+      <KebabMenu
+        triggerLabel="Flytta till … ▾"
+        triggerAriaLabel="Flytta till"
+        items={[{ label: 'Ny', onClick: vi.fn() }]}
+      />,
+    )
+
+    expect(screen.getByRole('button', { name: 'Flytta till' })).toHaveTextContent(
+      'Flytta till … ▾',
+    )
+  })
+
   it('closes when clicking outside the menu', () => {
     render(<KebabMenu items={[{ label: 'Redigera', onClick: vi.fn() }]} />)
 

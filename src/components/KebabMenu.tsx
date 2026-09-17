@@ -21,6 +21,14 @@ interface KebabMenuProps {
   /** Optional non-interactive label shown above the items, e.g. "Flytta till …". */
   heading?: string
   items: KebabMenuItem[]
+  /**
+   * Override the default "⋯" icon trigger with a labelled button, e.g.
+   * "Flytta till … ▾" for the candidate profile header's explicit move
+   * control (DESIGN.md section 10) - same menu mechanics, different
+   * visible trigger than the plain action kebabs.
+   */
+  triggerLabel?: string
+  triggerAriaLabel?: string
 }
 
 interface MenuPosition {
@@ -31,7 +39,7 @@ interface MenuPosition {
 const MENU_WIDTH_PX = 160
 const VIEWPORT_MARGIN_PX = 8
 
-export function KebabMenu({ heading, items }: KebabMenuProps) {
+export function KebabMenu({ heading, items, triggerLabel, triggerAriaLabel }: KebabMenuProps) {
   const [open, setOpen] = useState(false)
   const [position, setPosition] = useState<MenuPosition | null>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)
@@ -83,13 +91,13 @@ export function KebabMenu({ heading, items }: KebabMenuProps) {
       <button
         ref={triggerRef}
         type="button"
-        className="kebab-menu__trigger"
+        className={triggerLabel ? 'kebab-menu__trigger kebab-menu__trigger--labelled' : 'kebab-menu__trigger'}
         aria-haspopup="true"
         aria-expanded={open}
-        aria-label="Fler alternativ"
+        aria-label={triggerAriaLabel ?? 'Fler alternativ'}
         onClick={() => setOpen((current) => !current)}
       >
-        ⋯
+        {triggerLabel ?? '⋯'}
       </button>
       {open &&
         position &&
