@@ -1,0 +1,77 @@
+.candidate-profile-header {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.candidate-profile-header__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.candidate-profile-header__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--radius-badge);
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+}
+
+.candidate-profile-header__name {
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-page-title);
+  color: var(--color-text);
+}
+
+.candidate-profile-header__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-badge);
+  font-size: var(--font-size-badge);
+  font-weight: var(--font-weight-badge);
+}
+
+.candidate-profile-header__badge--neutral {
+  color: var(--color-text-muted);
+  background-color: var(--color-neutral-bg);
+}
+
+.candidate-profile-header__badge--success {
+  color: var(--color-success);
+  background-color: var(--color-success-bg);
+}
+
+.candidate-profile-header__badge--warning {
+  color: var(--color-warning);
+  background-color: var(--color-warning-bg);
+}
+
+.candidate-profile-header__stage-chip {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  color: var(--color-text-muted);
+  background-color: var(--color-bg);
+  border-radius: var(--radius-badge);
+  padding: 2px var(--space-3);
+}
+
+.candidate-profile-header__spacer {
+  flex: 1;
+}
+
+.candidate-profile-header__contact {
+  margin: var(--space-2) 0 0;
+  padding-left: 52px;
+  font-size: var(--font-size-label);
+  color: var(--color-text-muted);
+}
