@@ -1,8 +1,8 @@
-.candidate-card-menu {
+.kebab-menu {
   position: relative;
 }
 
-.candidate-card-menu__trigger {
+.kebab-menu__trigger {
   background: none;
   border: none;
   color: var(--color-text-muted);
@@ -12,13 +12,13 @@
   cursor: pointer;
 }
 
-.candidate-card-menu__trigger:hover {
+.kebab-menu__trigger:hover {
   color: var(--color-text);
 }
 
-.candidate-card-menu__dropdown {
-  /* position/top/left are set inline (see CandidateCardMenu.tsx) - it's
-     portaled to document.body, so it has no positioned ancestor here. */
+.kebab-menu__dropdown {
+  /* position/top/left are set inline (see KebabMenu.tsx) - it's portaled
+     to document.body, so it has no positioned ancestor here. */
   z-index: 1100;
   min-width: 160px;
   background-color: var(--color-surface);
@@ -28,7 +28,7 @@
   padding: var(--space-2) 0;
 }
 
-.candidate-card-menu__heading {
+.kebab-menu__heading {
   margin: 0;
   padding: var(--space-1) var(--space-3);
   font-size: var(--font-size-label);
@@ -36,7 +36,7 @@
   color: var(--color-text-muted);
 }
 
-.candidate-card-menu__item {
+.kebab-menu__item {
   display: block;
   width: 100%;
   text-align: left;
@@ -48,6 +48,6 @@
   cursor: pointer;
 }
 
-.candidate-card-menu__item:hover {
+.kebab-menu__item:hover {
   background-color: var(--color-bg);
 }
