@@ -1,6 +1,8 @@
-// Pure derivations for the candidate card (DESIGN.md section 7). Kept
-// separate from rendering so the ai_score -> badge/score-chip rules are
-// unit-testable on their own.
+// Pure derivations from ai_score (DESIGN.md section 7). Kept separate from
+// rendering so the score-chip/status-badge rules are unit-testable on
+// their own. Originally kanban-card-specific (Step 3); moved here in
+// Step 5 once the candidate list and profile header needed the same
+// derivation, instead of duplicating it a third time.
 
 export type BadgeTone = 'neutral' | 'success' | 'warning'
 

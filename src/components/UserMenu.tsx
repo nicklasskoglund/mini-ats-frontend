@@ -1,6 +1,7 @@
 // Name/initials, role and sign-out, as specified in DESIGN.md section 5.
 import { useAuth } from '../auth/AuthProvider'
 import type { Role } from '../auth/role'
+import { getInitials } from '../lib/getInitials'
 import './UserMenu.css'
 
 const ROLE_LABELS: Record<Role, string> = {
@@ -23,16 +24,4 @@ export function UserMenu() {
       </button>
     </div>
   )
-}
-
-function getInitials(fullName: string | null): string {
-  if (!fullName) {
-    return '?'
-  }
-  return fullName
-    .trim()
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase() ?? '')
-    .join('')
 }

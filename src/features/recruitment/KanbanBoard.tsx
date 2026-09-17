@@ -1,9 +1,9 @@
 // The recruitment kanban board (DESIGN.md section 7): filters above six
 // fixed-order columns. Grouping by stage and filtering both happen
 // server-side (see useKanbanBoard) - this component only renders.
+import { STAGE_ORDER } from '../candidates/stageLabels'
 import { KanbanColumn } from './KanbanColumn'
 import { KanbanFilters } from './KanbanFilters'
-import { STAGE_ORDER } from './stageLabels'
 import { useKanbanBoard } from './useKanbanBoard'
 import './KanbanBoard.css'
 

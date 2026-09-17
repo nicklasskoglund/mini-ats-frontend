@@ -1,10 +1,9 @@
-// Kebab menu on a kanban card. In this step it only holds the
-// "Flytta till …" submenu (DESIGN.md section 7); Redigera/Radera land
-// here once the candidate profile exists (Step 5). Rendering/positioning
-// mechanics live in the shared KebabMenu component.
+// Kebab menu on a kanban card: just the "Flytta till …" submenu
+// (DESIGN.md section 7). Redigera/Radera live on a separate kebab menu on
+// the candidate list's row and the profile header (Step 5), not here.
 import type { CandidateRead, Stage } from '../../api/types'
 import { KebabMenu } from '../../components/KebabMenu'
-import { STAGE_LABELS, STAGE_ORDER } from './stageLabels'
+import { buildMoveToStageItems } from '../candidates/stageLabels'
 
 interface CandidateCardMenuProps {
   candidate: CandidateRead
@@ -12,15 +11,5 @@ interface CandidateCardMenuProps {
 }
 
 export function CandidateCardMenu({ candidate, onMove }: CandidateCardMenuProps) {
-  const otherStages = STAGE_ORDER.filter((stage) => stage !== candidate.stage)
-
-  return (
-    <KebabMenu
-      heading="Flytta till …"
-      items={otherStages.map((stage) => ({
-        label: STAGE_LABELS[stage],
-        onClick: () => onMove(stage),
-      }))}
-    />
-  )
+  return <KebabMenu heading="Flytta till …" items={buildMoveToStageItems(candidate, onMove)} />
 }

@@ -6,8 +6,8 @@ import { getGenericErrorMessage, isActingAsCustomerNotFound } from '../../api/er
 import type { CandidateRead, JobRead, KanbanBoard, Stage } from '../../api/types'
 import { useActingAs } from '../../context/ActingAsProvider'
 import { useToast } from '../../context/ToastProvider'
+import { STAGE_LABELS } from '../candidates/stageLabels'
 import { moveCandidateInBoard } from './kanbanBoardHelpers'
-import { STAGE_LABELS } from './stageLabels'
 
 const NAME_FILTER_DEBOUNCE_MS = 300
 

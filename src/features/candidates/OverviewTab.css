@@ -1,0 +1,57 @@
+.overview-tab {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+.overview-tab h2 {
+  margin-bottom: var(--space-3);
+}
+
+.overview-tab__contact dl {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.overview-tab__row {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.overview-tab__row dt {
+  width: 100px;
+  flex-shrink: 0;
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  color: var(--color-text-muted);
+}
+
+.overview-tab__row dd {
+  margin: 0;
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
+.overview-tab__row a {
+  color: var(--color-primary);
+}
+
+.overview-tab__assessment {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+}
+
+.overview-tab__assessment p {
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 720px) {
+  .overview-tab {
+    grid-template-columns: 1fr;
+  }
+}

@@ -38,8 +38,29 @@ export interface CandidateRead {
   created_at: string
 }
 
-/** Request body for PATCH /candidates/{candidate_id}. Only the fields we send. */
+/**
+ * Request body for POST /candidates. `email` is optional in the contract
+ * but required by the "Add candidate" form (DESIGN.md section 9, the
+ * frontend's own stricter rule - same pattern as jobs.status in Step 4).
+ */
+export interface CandidateCreate {
+  job_id: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  linkedin_url?: string | null
+  cv_text?: string | null
+  notes?: string | null
+}
+
+/** Request body for PATCH /candidates/{candidate_id}. All fields optional (partial update). */
 export interface CandidateUpdate {
+  name?: string
+  email?: string | null
+  phone?: string | null
+  linkedin_url?: string | null
+  cv_text?: string | null
+  notes?: string | null
   stage?: Stage
 }
 

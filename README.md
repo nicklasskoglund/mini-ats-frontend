@@ -30,15 +30,16 @@ npm run dev
 
 ## Status
 
-Authentication, the application shell, the recruitment kanban board, and
-job management (list, create, edit, delete) are in place. Every other view
-is a "coming soon" placeholder.
+Authentication, the application shell, the recruitment kanban board, job
+management, and candidate management (list, add, profile, edit, delete)
+are in place. The candidate profile's AI assessment panel is a placeholder
+until Step 6. Every other view is a "coming soon" placeholder.
 
 ## Roadmap
 
 - [x] Authentication and application shell
 - [x] Recruitment kanban board
 - [x] Jobs
-- [ ] Candidates and candidate profile
+- [x] Candidates and candidate profile
 - [ ] AI-assisted CV assessment
 - [ ] Admin: customers and accounts
