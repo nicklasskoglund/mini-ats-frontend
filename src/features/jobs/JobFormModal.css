@@ -1,0 +1,75 @@
+.job-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.job-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  color: var(--color-text-muted);
+}
+
+.job-form__field input,
+.job-form__field textarea,
+.job-form__field select {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  font-family: inherit;
+}
+
+.job-form__field textarea {
+  resize: vertical;
+}
+
+.job-form__error {
+  margin: 0;
+  color: var(--color-danger);
+  font-size: var(--font-size-label);
+}
+
+.job-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+}
+
+.job-form__cancel {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.job-form__cancel:hover {
+  background-color: var(--color-bg);
+}
+
+.job-form__submit {
+  border: none;
+  border-radius: var(--radius-control);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-section-title);
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  cursor: pointer;
+}
+
+.job-form__submit:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+.job-form__submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
