@@ -6,7 +6,7 @@
 import type { DragEvent } from 'react'
 import type { CandidateRead, Stage } from '../../api/types'
 import { CandidateCardMenu } from './CandidateCardMenu'
-import { deriveScoreLabel, deriveStatusBadge } from './candidateDisplay'
+import { deriveScoreLabel, deriveStatusBadge } from '../candidates/candidateDisplay'
 import './CandidateCard.css'
 
 interface CandidateCardProps {

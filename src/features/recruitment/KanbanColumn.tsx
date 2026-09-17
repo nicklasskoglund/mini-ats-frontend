@@ -3,8 +3,8 @@
 // either skeleton placeholders, an empty-state message, or the cards.
 import { useRef, useState, type DragEvent } from 'react'
 import type { CandidateRead, Stage } from '../../api/types'
+import { STAGE_LABELS } from '../candidates/stageLabels'
 import { CandidateCard } from './CandidateCard'
-import { STAGE_LABELS } from './stageLabels'
 import './KanbanColumn.css'
 
 interface KanbanColumnProps {
