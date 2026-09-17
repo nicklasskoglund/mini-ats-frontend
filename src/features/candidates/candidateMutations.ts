@@ -25,3 +25,15 @@ export function deleteCandidate(candidateId: string): Promise<void> {
   // 204, no cascade/409 check - candidates have no child rows (unlike jobs).
   return apiFetch<void>(`/candidates/${candidateId}`, { method: 'DELETE' })
 }
+
+// The caller owns the AbortController (see AiAssessmentPanel.tsx): it
+// needs the same controller to cover the timeout, unmounting, and
+// switching to a different candidate with one abort path, not just a
+// fire-and-forget AbortSignal.timeout() this function couldn't otherwise
+// trigger itself.
+export function assessCandidate(candidateId: string, signal: AbortSignal): Promise<CandidateRead> {
+  return apiFetch<CandidateRead>(`/candidates/${candidateId}/assess`, {
+    method: 'POST',
+    signal,
+  })
+}

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { apiFetch } from '../../api/client'
-import { createCandidate, deleteCandidate, updateCandidate } from './candidateMutations'
+import { assessCandidate, createCandidate, deleteCandidate, updateCandidate } from './candidateMutations'
 
 vi.mock('../../api/client', () => ({
   apiFetch: vi.fn(),
@@ -41,5 +41,17 @@ describe('candidateMutations', () => {
     await deleteCandidate('candidate-1')
 
     expect(mockedApiFetch).toHaveBeenCalledWith('/candidates/candidate-1', { method: 'DELETE' })
+  })
+
+  it('assessCandidate POSTs to /candidates/{id}/assess with the given signal', async () => {
+    mockedApiFetch.mockResolvedValue({ id: 'candidate-1' })
+    const controller = new AbortController()
+
+    await assessCandidate('candidate-1', controller.signal)
+
+    expect(mockedApiFetch).toHaveBeenCalledWith('/candidates/candidate-1/assess', {
+      method: 'POST',
+      signal: controller.signal,
+    })
   })
 })
