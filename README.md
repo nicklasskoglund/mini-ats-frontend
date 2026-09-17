@@ -30,15 +30,15 @@ npm run dev
 
 ## Status
 
-Authentication against Supabase, role-based route guarding, and the
-application shell (sidebar, topbar, act-as-customer picker) are in place.
-Every other view is a "coming soon" placeholder.
+Authentication, the application shell, the recruitment kanban board, and
+job management (list, create, edit, delete) are in place. Every other view
+is a "coming soon" placeholder.
 
 ## Roadmap
 
 - [x] Authentication and application shell
-- [ ] Recruitment kanban board
-- [ ] Jobs
+- [x] Recruitment kanban board
+- [x] Jobs
 - [ ] Candidates and candidate profile
 - [ ] AI-assisted CV assessment
 - [ ] Admin: customers and accounts
