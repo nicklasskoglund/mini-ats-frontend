@@ -1,0 +1,37 @@
+.account-tabs {
+  display: flex;
+  gap: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-4);
+}
+
+.account-tabs__tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-body);
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.account-tabs__tab:hover {
+  color: var(--color-text);
+}
+
+.account-tabs__tab--active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  font-weight: var(--font-weight-label);
+}
+
+/*
+ * Written as its own combined selector from the start (DESIGN.md section
+ * 5) - .account-tabs__tab:hover (0-2-0) would otherwise beat
+ * .account-tabs__tab--active (0-1-0) on color alone, same class of bug as
+ * the sidebar's active+hover contrast issue.
+ */
+.account-tabs__tab.account-tabs__tab--active:hover {
+  color: var(--color-primary-hover);
+  border-bottom-color: var(--color-primary-hover);
+}

@@ -125,6 +125,28 @@ describe('apiFetch', () => {
     actingAsEvents.removeEventListener(ACTING_AS_CUSTOMER_CLEARED, listener)
   })
 
+  it('uses actingAsCustomerId to override the stored customer for one call', async () => {
+    localStorage.setItem('mini-ats:acting-as-customer', 'globally-selected-customer')
+    globalThis.fetch = mockFetchResponse({ jsonBody: { ok: true } })
+
+    await apiFetch('/jobs', { actingAsCustomerId: 'one-off-customer' })
+
+    const [, init] = vi.mocked(globalThis.fetch).mock.calls[0]
+    const headers = init?.headers as Headers
+    expect(headers.get('X-Acting-As-Customer')).toBe('one-off-customer')
+    // The override must not touch the globally stored selection.
+    expect(getStoredCustomerId()).toBe('globally-selected-customer')
+  })
+
+  it('does not pass actingAsCustomerId through to fetch as a request option', async () => {
+    globalThis.fetch = mockFetchResponse({ jsonBody: { ok: true } })
+
+    await apiFetch('/jobs', { actingAsCustomerId: 'one-off-customer' })
+
+    const [, init] = vi.mocked(globalThis.fetch).mock.calls[0]
+    expect(init).not.toHaveProperty('actingAsCustomerId')
+  })
+
   it('does not clear the stored customer for an unrelated 404', async () => {
     localStorage.setItem('mini-ats:acting-as-customer', 'customer-123')
     globalThis.fetch = vi.fn().mockResolvedValue({

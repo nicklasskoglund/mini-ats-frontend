@@ -31,8 +31,9 @@ npm run dev
 ## Status
 
 Authentication, the application shell, the recruitment kanban board, job
-management, candidate management, and AI-assisted CV assessment are in
-place. Every other view is a "coming soon" placeholder.
+management, candidate management, AI-assisted CV assessment, and admin
+account/customer management are in place. Every other view is a "coming
+soon" placeholder.
 
 ## Roadmap
 
@@ -41,4 +42,4 @@ place. Every other view is a "coming soon" placeholder.
 - [x] Jobs
 - [x] Candidates and candidate profile
 - [x] AI-assisted CV assessment
-- [ ] Admin: customers and accounts
+- [x] Admin: customers, accounts, and profile settings

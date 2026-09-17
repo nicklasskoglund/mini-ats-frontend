@@ -1,0 +1,62 @@
+.delete-account-dialog__list {
+  margin: 0;
+  padding-left: var(--space-4);
+  color: var(--color-text);
+}
+
+.delete-account-dialog__loading {
+  color: var(--color-text-muted);
+}
+
+.delete-account-dialog__error {
+  margin: 0;
+  color: var(--color-danger);
+  font-size: var(--font-size-label);
+}
+
+.delete-account-dialog__retry {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-primary);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+}
+
+.delete-account-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.delete-account-dialog__cancel {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.delete-account-dialog__cancel:hover {
+  background-color: var(--color-bg);
+}
+
+.delete-account-dialog__confirm {
+  border: none;
+  border-radius: var(--radius-control);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-section-title);
+  background-color: var(--color-danger);
+  color: var(--color-surface);
+  cursor: pointer;
+}
+
+.delete-account-dialog__confirm:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
