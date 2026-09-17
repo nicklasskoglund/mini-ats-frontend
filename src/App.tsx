@@ -8,7 +8,9 @@ import { ProtectedRoute } from './auth/ProtectedRoute'
 import { RoleGuard } from './auth/RoleGuard'
 import { ActingAsProvider } from './context/ActingAsProvider'
 import { ToastProvider } from './context/ToastProvider'
+import { AddCandidatePage } from './pages/AddCandidatePage'
 import { AdminAccountsPage } from './pages/AdminAccountsPage'
+import { CandidateProfilePage } from './pages/CandidateProfilePage'
 import { CandidatesPage } from './pages/CandidatesPage'
 import { JobsPage } from './pages/JobsPage'
 import { LoginPage } from './pages/LoginPage'
@@ -33,6 +35,8 @@ function App() {
                 <Route path="/" element={<RecruitmentPage />} />
                 <Route path="/jobs" element={<JobsPage />} />
                 <Route path="/candidates" element={<CandidatesPage />} />
+                <Route path="/candidates/new" element={<AddCandidatePage />} />
+                <Route path="/candidates/:id" element={<CandidateProfilePage />} />
                 <Route
                   path="/admin/accounts"
                   element={
