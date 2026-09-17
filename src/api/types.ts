@@ -98,3 +98,55 @@ export interface JobUpdate {
   description?: string | null
   status?: string
 }
+
+export type AccountRole = 'admin' | 'customer'
+
+/**
+ * Request body for POST /admin/accounts. `password` must be omitted
+ * entirely (not sent as null) for role "customer" - the backend 400s if
+ * the key is present at all, regardless of value (see
+ * features/admin/adminMutations.ts).
+ */
+export interface AdminAccountCreate {
+  email: string
+  password?: string
+  role: AccountRole
+  full_name?: string | null
+  company_name?: string | null
+}
+
+/** The created account, as returned by POST /admin/accounts. */
+export interface AdminAccountRead {
+  id: string
+  email: string
+  role: AccountRole
+  full_name: string | null
+  company_name: string | null
+}
+
+/** Profile as returned by GET/PATCH /profile. */
+export interface ProfileRead {
+  id: string
+  role: string
+  full_name: string | null
+  company_name: string | null
+  website_url: string | null
+  linkedin_url: string | null
+  phone: string | null
+  contact_email: string | null
+  address: string | null
+  description: string | null
+  created_at: string
+}
+
+/** Request body for PATCH /profile. All fields optional (partial update). */
+export interface ProfileUpdate {
+  full_name?: string | null
+  company_name?: string | null
+  website_url?: string | null
+  linkedin_url?: string | null
+  phone?: string | null
+  contact_email?: string | null
+  address?: string | null
+  description?: string | null
+}

@@ -7,24 +7,36 @@ import { ACTING_AS_CUSTOMER_NOT_FOUND_DETAIL, ApiError, type ErrorDetail } from 
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
-export async function apiFetch<T>(path: string, options: RequestInit = {}): Promise<T> {
+interface ApiFetchOptions extends RequestInit {
+  /**
+   * Overrides the globally-selected acting-as customer for this one call,
+   * without touching ActingAsProvider's stored selection. Only for the
+   * admin account deletion dialog's on-demand job/candidate count lookup
+   * (Step 7) - every other call site relies on the global selection, per
+   * CLAUDE.md "Admin agerar som kund".
+   */
+  actingAsCustomerId?: string
+}
+
+export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): Promise<T> {
+  const { actingAsCustomerId: actingAsCustomerOverride, ...fetchOptions } = options
   const {
     data: { session },
   } = await supabase.auth.getSession()
 
-  const headers = new Headers(options.headers)
+  const headers = new Headers(fetchOptions.headers)
   headers.set('Content-Type', 'application/json')
   if (session?.access_token) {
     headers.set('Authorization', `Bearer ${session.access_token}`)
   }
-  const actingAsCustomerId = getStoredCustomerId()
+  const actingAsCustomerId = actingAsCustomerOverride ?? getStoredCustomerId()
   if (actingAsCustomerId) {
     headers.set('X-Acting-As-Customer', actingAsCustomerId)
   }
 
   let response: Response
   try {
-    response = await fetch(`${API_BASE_URL}${path}`, { ...options, headers })
+    response = await fetch(`${API_BASE_URL}${path}`, { ...fetchOptions, headers })
   } catch {
     // fetch() rejects on network failure (backend down, CORS, offline) -
     // status 0 distinguishes this from a real HTTP error response.
