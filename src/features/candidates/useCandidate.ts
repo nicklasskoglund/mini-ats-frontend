@@ -49,6 +49,10 @@ export function useCandidate(candidateId: string) {
 
   return {
     candidate,
+    // Exposed so a mutation that already returns the full updated
+    // CandidateRead (e.g. assessCandidate) can apply it directly instead
+    // of triggering a second, redundant GET via reload().
+    setCandidate,
     loading,
     loadError,
     reload: () => setReloadToken((token) => token + 1),
