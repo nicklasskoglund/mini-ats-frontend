@@ -1,19 +1,18 @@
-// Översikt tab (DESIGN.md section 10): contact details on the left, an AI
-// assessment placeholder on the right. The real assessment panel (five
-// states, POST /assess) is Step 6's - this is a deliberately honest
-// placeholder so no button here promises functionality that doesn't
-// exist yet (designprincip 3, "inga falska kontroller").
+// Översikt tab (DESIGN.md section 10): contact details on the left, the
+// AI assessment panel (DESIGN.md section 11) on the right.
 import type { ReactNode } from 'react'
 import type { CandidateRead } from '../../api/types'
 import { formatDate } from '../../lib/formatDate'
+import { AiAssessmentPanel } from './AiAssessmentPanel'
 import './OverviewTab.css'
 
 interface OverviewTabProps {
   candidate: CandidateRead
   jobTitle: string | undefined
+  onAssess: (signal: AbortSignal) => Promise<void>
 }
 
-export function OverviewTab({ candidate, jobTitle }: OverviewTabProps) {
+export function OverviewTab({ candidate, jobTitle, onAssess }: OverviewTabProps) {
   return (
     <div className="overview-tab">
       <div className="overview-tab__contact">
@@ -37,7 +36,7 @@ export function OverviewTab({ candidate, jobTitle }: OverviewTabProps) {
       </div>
       <div className="overview-tab__assessment">
         <h2>AI-bedömning</h2>
-        <p>AI-bedömning kommer i nästa steg.</p>
+        <AiAssessmentPanel candidate={candidate} onAssess={onAssess} />
       </div>
     </div>
   )

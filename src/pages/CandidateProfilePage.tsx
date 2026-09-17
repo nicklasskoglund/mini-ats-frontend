@@ -10,7 +10,7 @@ import { DeleteCandidateDialog } from '../features/candidates/DeleteCandidateDia
 import { EditCandidateModal } from '../features/candidates/EditCandidateModal'
 import { NotesTab } from '../features/candidates/NotesTab'
 import { OverviewTab } from '../features/candidates/OverviewTab'
-import { deleteCandidate, updateCandidate } from '../features/candidates/candidateMutations'
+import { assessCandidate, deleteCandidate, updateCandidate } from '../features/candidates/candidateMutations'
 import { useCandidate } from '../features/candidates/useCandidate'
 import { useJobs } from '../features/jobs/useJobs'
 import './CandidateProfilePage.css'
@@ -27,7 +27,7 @@ const TABS: { key: TabKey; label: string }[] = [
 export function CandidateProfilePage() {
   const { id = '' } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const { candidate, loading, loadError, reload } = useCandidate(id)
+  const { candidate, setCandidate, loading, loadError, reload } = useCandidate(id)
   const { jobs } = useJobs()
   const [activeTab, setActiveTab] = useState<TabKey>('overview')
   const [editing, setEditing] = useState(false)
@@ -85,7 +85,11 @@ export function CandidateProfilePage() {
 
       <div className="candidate-profile-page__panel">
         {activeTab === 'overview' && (
-          <OverviewTab candidate={candidate} jobTitle={jobTitleById.get(candidate.job_id)} />
+          <OverviewTab
+            candidate={candidate}
+            jobTitle={jobTitleById.get(candidate.job_id)}
+            onAssess={(signal) => assessCandidate(id, signal).then((updated) => setCandidate(updated))}
+          />
         )}
         {activeTab === 'cv' && (
           <CvTab

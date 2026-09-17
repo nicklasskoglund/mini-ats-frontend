@@ -31,9 +31,8 @@ npm run dev
 ## Status
 
 Authentication, the application shell, the recruitment kanban board, job
-management, and candidate management (list, add, profile, edit, delete)
-are in place. The candidate profile's AI assessment panel is a placeholder
-until Step 6. Every other view is a "coming soon" placeholder.
+management, candidate management, and AI-assisted CV assessment are in
+place. Every other view is a "coming soon" placeholder.
 
 ## Roadmap
 
@@ -41,5 +40,5 @@ until Step 6. Every other view is a "coming soon" placeholder.
 - [x] Recruitment kanban board
 - [x] Jobs
 - [x] Candidates and candidate profile
-- [ ] AI-assisted CV assessment
+- [x] AI-assisted CV assessment
 - [ ] Admin: customers and accounts

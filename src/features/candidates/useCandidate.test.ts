@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from '@testing-library/react'
+import { act, renderHook, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { apiFetch } from '../../api/client'
 import type { CandidateRead } from '../../api/types'
@@ -71,5 +71,20 @@ describe('useCandidate', () => {
 
     expect(result.current.loadError).toBe(true)
     expect(showToast).toHaveBeenCalledWith('Något gick fel. Försök igen.')
+  })
+
+  it('exposes setCandidate to apply an already-fetched update without refetching', async () => {
+    mockedApiFetch.mockResolvedValue(buildCandidate())
+
+    const { result } = renderHook(() => useCandidate('candidate-1'))
+    await waitFor(() => expect(result.current.loading).toBe(false))
+
+    const assessed = buildCandidate({ ai_score: 8 })
+    act(() => {
+      result.current.setCandidate(assessed)
+    })
+
+    expect(result.current.candidate).toEqual(assessed)
+    expect(mockedApiFetch).toHaveBeenCalledOnce()
   })
 })
