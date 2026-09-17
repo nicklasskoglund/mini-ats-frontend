@@ -32,3 +32,17 @@
   background-color: var(--color-primary);
   color: var(--color-surface);
 }
+
+/*
+ * .sidebar__link:hover (class + pseudo-class = specificity 0-2-0) would
+ * otherwise beat .sidebar__link--active (0-1-0) on background-color alone
+ * while leaving --active's white text color untouched - white text on the
+ * near-white hover background, for whichever link is currently active.
+ * This selector combines both classes (0-3-0) to win outright, regardless
+ * of source order, and re-asserts a matching text color explicitly rather
+ * than relying on --active's color rule surviving by accident.
+ */
+.sidebar__link.sidebar__link--active:hover {
+  background-color: var(--color-primary-hover);
+  color: var(--color-surface);
+}
