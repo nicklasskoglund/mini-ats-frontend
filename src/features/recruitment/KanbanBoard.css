@@ -6,6 +6,21 @@
   padding-bottom: var(--space-2);
 }
 
+@media (max-width: 720px) {
+  .kanban-board__columns {
+    flex-direction: column;
+  }
+
+  .kanban-board__column {
+    display: none;
+    width: 100%;
+  }
+
+  .kanban-board__column--active {
+    display: block;
+  }
+}
+
 .kanban-board__error {
   display: flex;
   flex-direction: column;
