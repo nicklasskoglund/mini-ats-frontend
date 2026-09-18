@@ -4,6 +4,7 @@
 // CustomerSummary has no role field (v1-avgränsning), so "Kund" is a fixed
 // label, not read from the response.
 import { KebabMenu } from '../../components/KebabMenu'
+import { SkeletonTableRows } from '../../components/Skeleton'
 import type { CustomerSummary } from '../../api/types'
 import './AccountsTable.css'
 
@@ -28,7 +29,7 @@ export function AccountsTable({ customers, loading, onDelete }: AccountsTablePro
         </thead>
         <tbody>
           {loading ? (
-            <SkeletonRows />
+            <SkeletonTableRows rows={3} colSpan={5} />
           ) : customers.length === 0 ? (
             <tr>
               <td colSpan={5} className="accounts-table__empty">
@@ -51,19 +52,5 @@ export function AccountsTable({ customers, loading, onDelete }: AccountsTablePro
         </tbody>
       </table>
     </div>
-  )
-}
-
-function SkeletonRows() {
-  return (
-    <>
-      {[0, 1, 2].map((key) => (
-        <tr key={key}>
-          <td colSpan={5}>
-            <div className="accounts-table__skeleton-bar" />
-          </td>
-        </tr>
-      ))}
-    </>
   )
 }

@@ -17,7 +17,7 @@ describe('AccountsTable', () => {
   it('shows skeleton rows while loading', () => {
     const { container } = render(<AccountsTable customers={[]} loading onDelete={vi.fn()} />)
 
-    expect(container.querySelectorAll('.accounts-table__skeleton-bar')).toHaveLength(3)
+    expect(container.querySelectorAll('.skeleton-bar')).toHaveLength(3)
   })
 
   it('shows an empty-state message when there are no customers', () => {

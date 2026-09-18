@@ -22,7 +22,7 @@ describe('JobsTable', () => {
       <JobsTable jobs={[]} loading onEdit={vi.fn()} onDelete={vi.fn()} />,
     )
 
-    expect(container.querySelectorAll('.jobs-table__skeleton-bar')).toHaveLength(3)
+    expect(container.querySelectorAll('.skeleton-bar')).toHaveLength(3)
     expect(screen.queryByText('Frontend developer')).not.toBeInTheDocument()
   })
 

@@ -2,6 +2,7 @@
 // plus a kebab menu for Redigera/Radera. Skeleton rows while loading, a
 // short message when there are none (avsnitt 13's loading/empty states).
 import { KebabMenu } from '../../components/KebabMenu'
+import { SkeletonTableRows } from '../../components/Skeleton'
 import { formatDate } from '../../lib/formatDate'
 import { getJobStatusLabel } from './jobStatus'
 import type { JobWithCandidateCount } from './useJobsList'
@@ -29,7 +30,7 @@ export function JobsTable({ jobs, loading, onEdit, onDelete }: JobsTableProps) {
         </thead>
         <tbody>
           {loading ? (
-            <SkeletonRows />
+            <SkeletonTableRows rows={3} colSpan={5} />
           ) : jobs.length === 0 ? (
             <tr>
               <td colSpan={5} className="jobs-table__empty">
@@ -57,19 +58,5 @@ export function JobsTable({ jobs, loading, onEdit, onDelete }: JobsTableProps) {
         </tbody>
       </table>
     </div>
-  )
-}
-
-function SkeletonRows() {
-  return (
-    <>
-      {[0, 1, 2].map((key) => (
-        <tr key={key}>
-          <td colSpan={5}>
-            <div className="jobs-table__skeleton-bar" />
-          </td>
-        </tr>
-      ))}
-    </>
   )
 }

@@ -77,4 +77,29 @@ describe('KebabMenu', () => {
 
     expect(screen.queryByRole('menu')).not.toBeInTheDocument()
   })
+
+  it('moves focus to the first menu item when opened, so a keyboard user can reach it', () => {
+    render(
+      <KebabMenu
+        items={[
+          { label: 'Redigera', onClick: vi.fn() },
+          { label: 'Radera', onClick: vi.fn() },
+        ]}
+      />,
+    )
+
+    openMenu()
+
+    expect(screen.getByRole('menuitem', { name: 'Redigera' })).toHaveFocus()
+  })
+
+  it('closes on Escape and returns focus to the trigger', () => {
+    render(<KebabMenu items={[{ label: 'Redigera', onClick: vi.fn() }]} />)
+
+    openMenu()
+    fireEvent.keyDown(document, { key: 'Escape' })
+
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Fler alternativ' })).toHaveFocus()
+  })
 })

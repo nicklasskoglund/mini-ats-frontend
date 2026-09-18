@@ -3,6 +3,7 @@
 // either skeleton placeholders, an empty-state message, or the cards.
 import { useRef, useState, type DragEvent } from 'react'
 import type { CandidateRead, Stage } from '../../api/types'
+import { SkeletonCards } from '../../components/Skeleton'
 import { STAGE_LABELS } from '../candidates/stageLabels'
 import { CandidateCard } from './CandidateCard'
 import './KanbanColumn.css'
@@ -77,10 +78,7 @@ export function KanbanColumn({
       </div>
       <div className="kanban-column__list">
         {loading ? (
-          <>
-            <div className="kanban-column__skeleton-card" />
-            <div className="kanban-column__skeleton-card" />
-          </>
+          <SkeletonCards count={2} />
         ) : candidates.length === 0 ? (
           <p className="kanban-column__empty">Inga kandidater här.</p>
         ) : (

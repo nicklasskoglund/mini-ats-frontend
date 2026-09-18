@@ -76,15 +76,37 @@ export function KebabMenu({ heading, items, triggerLabel, triggerAriaLabel }: Ke
       setOpen(false)
     }
 
+    // Escape returns focus to the trigger, same as Modal.tsx - without
+    // this a keyboard user has no way to close the menu at all, since the
+    // dropdown is portaled to the end of document.body and so isn't
+    // reachable by continuing to Tab from the trigger in visual order.
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setOpen(false)
+        triggerRef.current?.focus()
+      }
+    }
+
     document.addEventListener('mousedown', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
     window.addEventListener('scroll', handleDismiss, true)
     window.addEventListener('resize', handleDismiss)
     return () => {
       document.removeEventListener('mousedown', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('scroll', handleDismiss, true)
       window.removeEventListener('resize', handleDismiss)
     }
   }, [open])
+
+  // Moves focus into the dropdown as soon as it's positioned, so a
+  // keyboard user who activated the trigger lands on the first item
+  // instead of the menu opening with focus left behind on the trigger.
+  useEffect(() => {
+    if (open && position) {
+      dropdownRef.current?.querySelector('button')?.focus()
+    }
+  }, [open, position])
 
   return (
     <div className="kebab-menu">
