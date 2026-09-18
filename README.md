@@ -30,10 +30,13 @@ npm run dev
 
 ## Status
 
-Authentication, the application shell, the recruitment kanban board, job
-management, candidate management, AI-assisted CV assessment, and admin
-account/customer management are in place. Every other view is a "coming
-soon" placeholder.
+Feature-complete for v1: authentication, the application shell, the
+recruitment kanban board, job management, candidate management,
+AI-assisted CV assessment, and admin account/customer management are all
+in place, with a responsive mobile layout and empty/loading states across
+every list. The account listing under "Kunder & konton" only supports
+customer accounts for now - listing admin accounts shows a "coming soon"
+placeholder, since the API has no endpoint for it yet.
 
 ## Roadmap
 
@@ -43,3 +46,4 @@ soon" placeholder.
 - [x] Candidates and candidate profile
 - [x] AI-assisted CV assessment
 - [x] Admin: customers, accounts, and profile settings
+- [x] Responsive layout, empty/loading states, and accessibility polish
