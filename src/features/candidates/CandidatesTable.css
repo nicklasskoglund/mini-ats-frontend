@@ -1,0 +1,83 @@
+.candidates-table-container {
+  overflow-x: auto;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.candidates-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-body);
+}
+
+.candidates-table th {
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.candidates-table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.candidates-table tr:last-child td {
+  border-bottom: none;
+}
+
+.candidates-table a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.candidates-table a:hover {
+  text-decoration: underline;
+}
+
+.candidates-table__score {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  margin-right: var(--space-2);
+}
+
+.candidates-table__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-badge);
+  font-size: var(--font-size-badge);
+  font-weight: var(--font-weight-badge);
+}
+
+.candidates-table__badge--neutral {
+  color: var(--color-text-muted);
+  background-color: var(--color-neutral-bg);
+}
+
+.candidates-table__badge--success {
+  color: var(--color-success);
+  background-color: var(--color-success-bg);
+}
+
+.candidates-table__badge--warning {
+  color: var(--color-warning);
+  background-color: var(--color-warning-bg);
+}
+
+.candidates-table__actions {
+  text-align: right;
+  width: 1%;
+  white-space: nowrap;
+}
+
+.candidates-table__empty {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: var(--space-5);
+}

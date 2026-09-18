@@ -1,0 +1,47 @@
+.admin-accounts-page__toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.admin-accounts-page__create {
+  border: none;
+  border-radius: var(--radius-control);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-section-title);
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  cursor: pointer;
+}
+
+.admin-accounts-page__create:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.admin-accounts-page__error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  color: var(--color-text-muted);
+}
+
+.admin-accounts-page__error button {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background-color: var(--color-surface);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.admin-accounts-page__error button:hover {
+  background-color: var(--color-bg);
+}
+
+.admin-accounts-page__coming-soon {
+  color: var(--color-text-muted);
+}

@@ -30,14 +30,20 @@ npm run dev
 
 ## Status
 
-Project scaffold: folder structure, design tokens, and test tooling are in
-place. No application features yet.
+Feature-complete for v1: authentication, the application shell, the
+recruitment kanban board, job management, candidate management,
+AI-assisted CV assessment, and admin account/customer management are all
+in place, with a responsive mobile layout and empty/loading states across
+every list. The account listing under "Kunder & konton" only supports
+customer accounts for now - listing admin accounts shows a "coming soon"
+placeholder, since the API has no endpoint for it yet.
 
 ## Roadmap
 
-- [ ] Authentication and application shell
-- [ ] Recruitment kanban board
-- [ ] Jobs
-- [ ] Candidates and candidate profile
-- [ ] AI-assisted CV assessment
-- [ ] Admin: customers and accounts
+- [x] Authentication and application shell
+- [x] Recruitment kanban board
+- [x] Jobs
+- [x] Candidates and candidate profile
+- [x] AI-assisted CV assessment
+- [x] Admin: customers, accounts, and profile settings
+- [x] Responsive layout, empty/loading states, and accessibility polish

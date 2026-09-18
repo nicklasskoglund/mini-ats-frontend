@@ -1,0 +1,77 @@
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  padding: var(--space-4) var(--space-2);
+}
+
+.sidebar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.sidebar__link {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: var(--font-size-body);
+}
+
+.sidebar__link:hover {
+  background-color: var(--color-bg);
+}
+
+.sidebar__link--active {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+/*
+ * .sidebar__link:hover (class + pseudo-class = specificity 0-2-0) would
+ * otherwise beat .sidebar__link--active (0-1-0) on background-color alone
+ * while leaving --active's white text color untouched - white text on the
+ * near-white hover background, for whichever link is currently active.
+ * This selector combines both classes (0-3-0) to win outright, regardless
+ * of source order, and re-asserts a matching text color explicitly rather
+ * than relying on --active's color rule surviving by accident.
+ */
+.sidebar__link.sidebar__link--active:hover {
+  background-color: var(--color-primary-hover);
+  color: var(--color-surface);
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1100;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+  }
+
+  .sidebar--open {
+    transform: translateX(0);
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1090;
+    background-color: rgba(15, 23, 42, 0.4);
+  }
+}
