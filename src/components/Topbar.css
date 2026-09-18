@@ -17,3 +17,46 @@
 .topbar > .user-menu {
   margin-left: auto;
 }
+
+.topbar__menu-toggle {
+  display: none;
+  border: none;
+  background: none;
+  padding: var(--space-2);
+  cursor: pointer;
+  border-radius: var(--radius-control);
+}
+
+.topbar__menu-toggle:hover {
+  background-color: var(--color-bg);
+}
+
+.topbar__menu-icon,
+.topbar__menu-icon::before,
+.topbar__menu-icon::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: var(--color-text);
+  border-radius: 1px;
+}
+
+.topbar__menu-icon::before,
+.topbar__menu-icon::after {
+  content: '';
+  position: relative;
+}
+
+.topbar__menu-icon::before {
+  top: -6px;
+}
+
+.topbar__menu-icon::after {
+  top: 4px;
+}
+
+@media (max-width: 720px) {
+  .topbar__menu-toggle {
+    display: block;
+  }
+}
