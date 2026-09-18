@@ -48,10 +48,3 @@
   font-size: var(--font-size-label);
   color: var(--color-text-muted);
 }
-
-.kanban-column__skeleton-card {
-  height: 72px;
-  border-radius: var(--radius-card);
-  background-color: var(--color-border);
-  opacity: 0.5;
-}

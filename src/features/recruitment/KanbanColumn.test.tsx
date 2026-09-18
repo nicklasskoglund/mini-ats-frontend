@@ -2,6 +2,23 @@ import { fireEvent, render } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { KanbanColumn } from './KanbanColumn'
 
+describe('KanbanColumn loading state', () => {
+  it('shows skeleton cards instead of the candidate list while loading', () => {
+    const { container } = render(
+      <KanbanColumn
+        stage="new"
+        candidates={[]}
+        jobTitleById={new Map()}
+        showJobTitle={false}
+        loading
+        onMove={vi.fn()}
+      />,
+    )
+
+    expect(container.querySelectorAll('.skeleton-card')).toHaveLength(2)
+  })
+})
+
 describe('KanbanColumn drag-over highlight', () => {
   it('stays highlighted while the drag moves over a child element instead of flickering off', () => {
     // Regression test: dragenter/dragleave fire for every child the

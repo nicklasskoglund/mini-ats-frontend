@@ -42,10 +42,3 @@
   color: var(--color-text-muted);
   padding: var(--space-5);
 }
-
-.accounts-table__skeleton-bar {
-  height: 16px;
-  border-radius: var(--radius-control);
-  background-color: var(--color-border);
-  opacity: 0.5;
-}

@@ -43,7 +43,7 @@ describe('CandidatesTable', () => {
   it('shows skeleton rows while loading', () => {
     const { container } = renderTable({ loading: true })
 
-    expect(container.querySelectorAll('.candidates-table__skeleton-bar')).toHaveLength(3)
+    expect(container.querySelectorAll('.skeleton-bar')).toHaveLength(3)
   })
 
   it('shows an empty-state message when there are no candidates', () => {

@@ -4,6 +4,7 @@
 import { Link } from 'react-router-dom'
 import type { CandidateRead } from '../../api/types'
 import { KebabMenu } from '../../components/KebabMenu'
+import { SkeletonTableRows } from '../../components/Skeleton'
 import { deriveScoreLabel, deriveStatusBadge } from './candidateDisplay'
 import { STAGE_LABELS } from './stageLabels'
 import './CandidatesTable.css'
@@ -37,7 +38,7 @@ export function CandidatesTable({
         </thead>
         <tbody>
           {loading ? (
-            <SkeletonRows />
+            <SkeletonTableRows rows={3} colSpan={5} />
           ) : candidates.length === 0 ? (
             <tr>
               <td colSpan={5} className="candidates-table__empty">
@@ -77,19 +78,5 @@ export function CandidatesTable({
         </tbody>
       </table>
     </div>
-  )
-}
-
-function SkeletonRows() {
-  return (
-    <>
-      {[0, 1, 2].map((key) => (
-        <tr key={key}>
-          <td colSpan={5}>
-            <div className="candidates-table__skeleton-bar" />
-          </td>
-        </tr>
-      ))}
-    </>
   )
 }
